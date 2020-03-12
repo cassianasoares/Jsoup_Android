@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">web scraping app</string>
+    <string name="app_name">Scraping Run</string>
+    <string name="title_app_slapsh">Corridas RJ</string>
+    <string name="label_toolbar_main">Corridas - Agenda RJ</string>
 </resources>

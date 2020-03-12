@@ -1,24 +1,18 @@
 package com.portfolio.webscrapingapp
 
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
-import java.io.IOException
-import java.net.URL
 import kotlin.String
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var runs_data: ArrayList<String>? = ArrayList()
+    private var runsData: ArrayList<String>? = ArrayList()
     private var run: ArrayList<Run>? = ArrayList()
-   // private var asyncTask: DataScraping? = DataScraping()
     private var runAdapter: RunAdapter? = null
     private var recyclerView: RecyclerView? = null
 
@@ -27,10 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //asyncTask!!.dadosList = this
-        //asyncTask!!.execute()
-
-
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView!!.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(this)
@@ -38,44 +28,32 @@ class MainActivity : AppCompatActivity() {
         getData()
         runAdapter = RunAdapter(this, run!!)
         recyclerView!!.adapter = runAdapter
+        runLayoutAnimation(recyclerView!!)
 
     }
 
-    fun getData(){
-        runs_data = intent.getStringArrayListExtra("RUNS")
-
-        //val tamanho = runs_data!!.size - 1
+    private fun getData(){
+        runsData = intent.getStringArrayListExtra("RUNS")
 
         var f = 0
         for (i in 0..70) {
-            run!!.add(Run(runs_data!![f], runs_data!![f+1], runs_data!![f+2], runs_data!![f+3]))
+            run!!.add(Run(runsData!![f], runsData!![f+1], runsData!![f+2], runsData!![f+3]))
             f += 4
         }
-
-        //Log.i("teste", run!![0].toString())
-
-        //runAdapter = RunAdapter(this, run!!)
-        //recyclerView!!.adapter = runAdapter
 
     }
 
 
-   /* override fun getAllRuns(lista: ArrayList<String>)  {
-        runs_data = lista
-        //Log.i("teste1", runs_data.toString())
+    fun runLayoutAnimation(aniRecyclerView: RecyclerView){
+        val context = aniRecyclerView.context
 
-        var f = 0
+        val layoutAnimationController : LayoutAnimationController =
+            AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
 
-        for (i in 0..50) {
-            run!!.add(Run(lista[f], lista[f+1], lista[f+2], lista[f+3]))
-            f += 4
-        }
+        aniRecyclerView.layoutAnimation = layoutAnimationController
+        aniRecyclerView.adapter!!.notifyDataSetChanged()
+        aniRecyclerView.scheduleLayoutAnimation()
+    }
 
-        Log.i("teste", run!![0].toString())
-
-        runAdapter = RunAdapter(this, run!!)
-        recyclerView!!.adapter = runAdapter
-
-    }*/
 
 }

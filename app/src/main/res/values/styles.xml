@@ -8,9 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/textColorPrimary</item>
     </style>
-
-    <style name="SplashApp" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColor">@color/textColorSecundary</item>
-    </style>
-
 </resources>

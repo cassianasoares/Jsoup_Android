@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -20,6 +21,8 @@ class Splash : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
         loader = LoadStuff(this)
         loader!!.execute()
 
@@ -30,7 +33,6 @@ class Splash : AppCompatActivity(){
         AsyncTask<Void, Void, ArrayList<String>>() {
 
         var arr_spansTex: ArrayList<String>? = ArrayList()
-        var dadosList: DataRunss? = null
 
 
         override fun doInBackground(vararg params: Void?): ArrayList<String> {
@@ -55,12 +57,10 @@ class Splash : AppCompatActivity(){
 
         override fun onPostExecute(result: ArrayList<String>) {
             val c: AppCompatActivity = context!!
-            //if (c != null) {
                 val intent = Intent( c, MainActivity::class.java)
                 intent.putExtra("RUNS", result)
                 (context)!!.startActivity(intent)
-                c.finish() // don't let the user come back to this screen
-            //}
+                c.finish()
         }
 
     }

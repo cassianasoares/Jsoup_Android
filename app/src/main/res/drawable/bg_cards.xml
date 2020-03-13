@@ -4,10 +4,6 @@
     <solid
         android:color="@color/colorcard"/>
 
-    <stroke
-        android:width="2dp"
-        android:color="@color/colorPrimary"/>
-
     <corners
         android:bottomLeftRadius="7dp"
         android:bottomRightRadius="7dp"

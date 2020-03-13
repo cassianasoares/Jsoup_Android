@@ -83,10 +83,10 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_run" />
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
